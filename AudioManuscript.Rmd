@@ -53,7 +53,7 @@ Conclusions: Adding auditory input to illusory finger stretching increased subje
 
 ```{r setup, include=FALSE}
 
-packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra')
+packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','ggpubr')
 missingpackages <- packagelist[!packagelist %in% installed.packages()[,1]]
 if (length(missingpackages)>0){install.packages(missingpackages)}
 toinstall <- packagelist[which(!packagelist %in% (.packages()))]
@@ -83,7 +83,6 @@ Pre-registration of this study can be found at the following OSF link: https://o
 
 ```{r poweranalyses, include=FALSE}
 
-library(pwr)
 #subjective analysis power analysis
 SubjectivePA <- pwr.t.test(d=1.02,power=0.8,sig.level=0.05,type="two.sample",alternative="greater")
 #objecitve dot touch power analysis
@@ -97,7 +96,7 @@ A priori power analysis using subjective illusion data and objective dot touch d
 
 ## 2.2.2 Participants {.unnumbered}
 
-52 participants (84.6% Female. 11.5% Male, 3.8% Non-Binary; Mean age = 19.3 years, age range = 18 – 24 years) completed the experiment, with exclusion criteria being prior knowledge or expectations about the research, a history of neurological or psychiatric disorders, operations or procedures that could damage peripheral nerve pathways in the hands, a history of chronic pain conditions, history of drug or alcohol abuse, history of sleep disorders, history of epilepsy, having visual abnormalities that cannot be corrected optically (i.e. with glasses), or being under 18 years of age. From these 52 participants, 8 scored above 50 (indicating experience of the illusion) on the subjective experience questionnaire item regarding feeling stretching of the finger within the baseline condition where no stretching took place, therefore these 8 participants were removed from the analysis, resulting in 44 participants, 23 in the No-Audio group, and 21 in the Audio group. 
+52 participants (84.6% Female. 11.5% Male, 3.8% Non-Binary; Mean age = 19.3 years, age range = 18 – 24 years) completed the experiment, with exclusion criteria being prior knowledge or expectations about the research, a history of neurological or psychiatric disorders, operations or procedures that could damage peripheral nerve pathways in the hands, a history of chronic pain conditions, history of drug or alcohol abuse, history of sleep disorders, history of epilepsy, having visual abnormalities that cannot be corrected optically (i.e. with glasses), or being under 18 years of age. From these 52 participants, 8 scored above 50 (indicating experience of the illusion) on the subjective experience questionnaire item regarding feeling stretching of the finger within the baseline condition where no stretching took place, therefore these 8 participants were removed from the analysis, resulting in 44 participants, 23 in the No-Audio group, and 21 in the Audio group.
 
 ## 2.3 Materials {.unnumbered}
 
@@ -120,10 +119,6 @@ Participants were randomly assigned to either the auditory group or the non-audi
 # Reorganisation of data from Matlab
 
 # Get Data from Matlab
-install.packages("R.matlab")
-
-library(R.matlab)
-library(reshape2)
 
 data <- readMat('G:/My Drive/Audio Study/Analysis/subjects_OR3.mat')
 
@@ -278,18 +273,6 @@ subjective_data <- read.csv("G:\\My Drive\\Audio Study\\Analysis\\Final Dataset(
 
 
 ##Analysis
-
-#load needed packages
-library(tidyverse)
-library(rstatix)
-library(ez)
-library(ggpubr)
-library(lmerTest)
-library(MuMIn)
-library(emmeans)
-library(dplyr)
-library(gridExtra)
-
 
 #convert PID, Group and Condition within subjective data to factors
 subjective_data_factors = subjective_data %>%
@@ -759,7 +742,7 @@ knitr::include_graphics('figures/normruler.pdf')
 
 ```
 
-## 4. Disucssion {.unnumbered}
+## 4. Discussion {.unnumbered}
 
 This study sought to understand what impact the addition of non-naturalistic auditory input would have on traditional visuo-tactile and unimodal-visual hand-based resizing illusions. Findings showed that the addition of non-naturalistic auditory input that was consistent with the resizing illusion increased subjective experience of the illusion in the traditional unimodal-visual condition, with participants experiencing a significantly stronger illusion in the visual-auditory condition compared to the visual-only condition, supporting our first hypothesis. However, we found no facilitatory effects of auditory input for subjective experience of the visuo-tactile condition or for either of the objective tasks, opposing our remaining hypotheses, highlighting a potential discordance between conscious subjective experience of resizing illusions compared to more unconscious objective experiences. 
 
