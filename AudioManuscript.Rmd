@@ -62,6 +62,24 @@ toinstall <- packagelist[which(!packagelist %in% (.packages()))]
 invisible(lapply(toinstall,library,character.only=TRUE))
 
 knitr::opts_chunk$set(echo = TRUE)
+
+if (!dir.exists('local')){dir.create('local')}
+
+if (!file.exists('local/Final Dataset(r)_Outliers Removed.csv')){
+  osfproject <- osf_retrieve_node("b9s48")
+  osffiles <- osf_ls_files(osfproject)
+  fid <- which(osffiles$name=='Final Dataset(r)_Outliers Removed.csv')
+  osf_download(osffiles[fid,], path='local/',progress=TRUE)
+}
+
+#load in the subjective data
+subjective_data <- read.csv("local/Final Dataset(r)_Outliers Removed.csv")
+
+includedsubjects <- subjective_data[seq(1,132,3),1]
+groupassignments <- factor(subjective_data[seq(1,132,3),4])
+audiogroup <- which(groupassignments=='Audio')
+nonaudiogroup <- which(groupassignments=='No Audio')
+
 ```
 
 ## 1. Introduction {.unnumbered}
@@ -118,16 +136,15 @@ Participants were randomly assigned to either the auditory group or the non-audi
 
 ```{r analyseraw, include=FALSE}
 
-if (!dir.exists('local')){dir.create('local')}
-
 if (processdata==1){
 if (!dir.exists('local/rawdata')){dir.create('local/rawdata')}
 
 osfproject <- osf_retrieve_node("b9s48")
 
-osffiles <- osf_ls_files(osfproject,path='Ruler Ratings')
-if (!file.exists(paste0('local/',osffiles[1,1]))){
-  osf_download(osffiles[1,], path='local/',progress=TRUE)
+osffiles <- osf_ls_files(osfproject)
+if (!file.exists('local/rulerratings.csv')){
+  fid <- which(osffiles$name=='rulerratings.csv')
+  osf_download(osffiles[fid,], path='local/',progress=TRUE)
 }
 ratings <- read.csv('local/rulerratings.csv',header=FALSE)
 
@@ -223,22 +240,33 @@ for (s in 1:length(sublist)){
 save(file='local/allprocessed.RData',list=c('ratings','allout'))
 }
 
+if (processdata==0){
+  if (!file.exists('local/allprocessed.RData')){
+  osfproject <- osf_retrieve_node("b9s48")
+  osffiles <- osf_ls_files(osfproject)
+  fid <- which(osffiles$name=='allprocessed.RData')
+  osf_download(osffiles[fid,], path='local/',progress=TRUE)
+  }
+  load('local/allprocessed.RData')
+}
 
 ```
 
 
 ```{r processing data, include=FALSE}
 
-# Reorganisation of data from Matlab
+# Reorganisation of data
 
-# Get Data from Matlab
+meansettings <- apply(allout,1:2,mean)
+includedindices <- which(ratings[,1] %in% includedsubjects)
+allsettings <- meansettings[includedindices,]
 
-data <- readMat('local/subjects_OR3.mat')
-
-allsettings <- data$allsettings
-normsettings <- data$normsettings
-audiogroup <- data$audiogroup
-nonaudiogroup <- data$nonaudiogroup
+normsettings <- allsettings
+for (n in 1:3){
+normsettings[,(n*3)-2] <- normsettings[,(n*3)-2] - allsettings[,(n*3)-2]
+normsettings[,(n*3)-1] <- normsettings[,(n*3)-1] - allsettings[,(n*3)-2]
+normsettings[,(n*3)] <- normsettings[,(n*3)] - allsettings[,(n*3)-2]
+}
 
 #set column names
 colnames(allsettings) <- c("RightDotBaseline", "RightDotV/VA", "RightDotVT/VTA", 
@@ -379,10 +407,6 @@ normsettingsruler_formatted <- melt(normsettingsrulerdf,
 
 normsettingsruler_formatted <- normsettingsruler_formatted[ order(normsettingsruler_formatted$PID,
                                                                   normsettingsruler_formatted$condition), ]
-
-#load in the subjective data
-subjective_data <- read.csv("local/Final Dataset(r)_Outliers Removed.csv")
-
 
 ##Analysis
 
