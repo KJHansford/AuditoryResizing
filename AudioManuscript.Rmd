@@ -25,7 +25,7 @@ csl: elife.csl
 
 \vspace{10mm}
 \begin{center}
-Kirralise Hansford$^{1}$, Kirsten McKenzie$^{2}$, Daniel Baker$^{1}$, and Catherine Preston$^{1}$
+Kirralise J. Hansford$^{1}$, Kirsten J. McKenzie$^{2}$, Daniel H. Baker$^{1}$, and Catherine Preston$^{1}$
 \vspace{30mm}
 
 $^{1}$ Department of Psychology, University of York
@@ -53,7 +53,9 @@ Conclusions: Adding auditory input to illusory finger stretching increased subje
 
 ```{r setup, include=FALSE}
 
-packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','ggpubr')
+processdata <- 1        # takes about 5 hours to run from scratch
+
+packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','ggpubr','osfr')
 missingpackages <- packagelist[!packagelist %in% installed.packages()[,1]]
 if (length(missingpackages)>0){install.packages(missingpackages)}
 toinstall <- packagelist[which(!packagelist %in% (.packages()))]
@@ -113,6 +115,117 @@ knitr::include_graphics('figures/Augmented Reality Infographic.png')
 Participants were randomly assigned to either the auditory group or the non-auditory group. Participants were then seated at the augmented-reality system and were instructed to place both of their hands, with their index fingers outstretched, onto the felt. There were two white dots on the felt to guide where their hands should be placed, and arm rests were given for comfort. Participants were instructed to view the image of their hands in the mirror (whilst their real hands were hidden from view) throughout the experiment. They viewed their hands whilst receiving baseline conditions where no manipulations were given (a 440Hz sound was played in the auditory condition), stretching conditions where they saw the index finger on their right-hand stretch (unimodal visual / visual-auditory conditions with accompanying 308Hz – 629Hz sound), and stretching conditions where as they saw their index finger on their right hand stretch a researcher gently pulled on the end of their finger (visuotactile / visuotactile-auditory conditions with accompanying 308Hz – 629Hz sound). After viewing the conditional manipulation to their right hand, participants completed either a left-hand dot touch task, a right-hand dot touch task, or a ruler judgement task. The dot touch tasks consisted of a magenta dot appearing in front of either their right or left hand, and participants being asked to move their index finger in one smooth motion to touch the dot, and then return their finger to the indicated pre-trial position. The ruler judgement task consisted of a ruler appearing to the right of the participants right hand, which changed in position and scale to avoid trial order bias, and participants were asked where they believed the tip of their right index finger was on that ruler. Participants completed 6 repetitions of 9 distinct conditions: 1, Baseline with left dot touch; 2, Unimodal visual / visual-auditory stretching with left dot touch; 3,Visuotactile / visuotactile-auditory stretching with left dot touch; 4, Baseline with right dot touch; 5, Unimodal visual / visual-auditory stretching with right dot touch; 6,Visuotactile / visuotactile-auditory stretching with right dot touch; 7, Baseline with ruler judgement task; 8, Unimodal visual / visual-auditory stretching with ruler judgement task; 9,Visuotactile / visuotactile-auditory stretching with ruler judgement task. (Video of a participant undergoing visuotactile stretching can be seen in supplementary material). Conditions were randomised via MATLAB r2017a, and the experimenter was unaware which condition would be presented on a given trial. The experimenter was informed of whether to gently pull the index finger or to apply no manipulation via the presentation of a small blue box on the screen out of the participants view. 6 repetitions of the 9 conditions were presented, followed by a break for the participant to stretch their hand and rest, and then the baseline, visuotactile / visuotactile-auditory and the unimodal visual / visual-auditory conditions were presented once in a random order, without any dot touch or ruler judgement tasks, after which the participant completed the subjective illusory experience questionnaire.
 
 ## 3. Results {.unnumbered}
+
+```{r analyseraw, include=FALSE}
+
+if (!dir.exists('local')){dir.create('local')}
+
+if (processdata==1){
+if (!dir.exists('local/rawdata')){dir.create('local/rawdata')}
+
+osfproject <- osf_retrieve_node("b9s48")
+
+osffiles <- osf_ls_files(osfproject,path='Ruler Ratings')
+if (!file.exists(paste0('local/',osffiles[1,1]))){
+  osf_download(osffiles[1,], path='local/',progress=TRUE)
+}
+ratings <- read.csv('local/rulerratings.csv',header=FALSE)
+
+osffiles <- osf_ls_files(osfproject,path='Raw Data',n_max=100)
+for (n in 1:nrow(osffiles)){
+if (!file.exists(paste0('local/rawdata/',osffiles[n,1]))){
+  osf_download(osffiles[n,], path='local/rawdata/',progress=TRUE)
+}}
+
+
+sublist <- c(402:440,442:454)
+
+threshold <- 0.8
+allout <- array(0,dim=c(length(sublist),9,6))
+
+for (s in 1:length(sublist)){
+  subjID <- sublist[s]
+  
+  print(subjID)
+  
+  temp <- readMat(paste0('local/rawdata/',subjID,'trialorder.mat'))
+  
+  subjind <- which(ratings[,1]==subjID)
+  
+  triallist <- unlist(temp$trialorder[[1]])
+  
+  output <- matrix(0,nrow=9,ncol=6)
+  condcount <- (1:9)*0
+  rulercount <- 0
+  
+  for (trial in 1:length(triallist)){
+    
+    cond <- triallist[trial]
+    condcount[cond] <- condcount[cond] + 1
+ 
+    # mirror reverse the image because the camera is pointing at a mirror!
+    thisim <- temp$allimages[trial,,1920:1,]
+    
+    if (triallist[trial]<7){
+      if (triallist[trial]<4){print(paste(subjID,'Right dot touch'))}
+      if (triallist[trial]>3){print(paste(subjID,'Left dot touch'))}
+      
+      xy <- round(c(3*1920/4,350) + (c(-1,1)*temp$xydots[trial,]))
+      
+      # remove the magenta dot
+      A <- thisim[,,1]==255
+      B <- thisim[,,2]==0
+      C <- thisim[,,3]==255
+      abc <- A*B*C
+      ind <- which(abc>0,arr.ind=TRUE)
+      thisim[ind[,1],ind[,2],] <- 0
+      
+      meanmap <- apply(thisim/255,1:2,mean)
+      meanmap[1:100,] <- 0
+      ind <- which(meanmap>threshold,arr.ind=TRUE)  # find pixels above the threshold
+      fingertip <- min(ind[,1])  # find the y value closest to the top of the image
+      
+      output[cond,condcount[cond]] <- fingertip - xy[2]   # store error     
+      
+    }
+
+    if (triallist[trial]>6){
+      print(paste(subjID,'Ruler task'))
+      
+      rulercount <- rulercount + 1
+      subjectrating <- ratings[subjind,rulercount+1]
+      
+      meanmap <- apply(thisim/255,1:2,mean)
+      meanmap[1:100,] <- 0
+      ind <- which(meanmap>threshold,arr.ind=TRUE)  # find pixels above the threshold
+      fingertip <- min(ind[,1])  # find the y value closest to the top of the image
+      
+      thisscale <- temp$rulerscales[trial]
+      thispos <- temp$rulerxy[trial]
+      
+      rulermin <- (1200/2) + 50 - thispos
+      rulermax <- (1200/2) - 350 - thispos
+      
+      truepos <- thisscale + ((rulermin - fingertip)/50)
+      
+      output[cond,condcount[cond]] <- subjectrating - truepos    
+      
+      # adjusts the ratings to flag as an out of range trial
+      if (subjectrating>(thisscale + 8)){ratings[subjind,rulercount+1] <- 999}
+      if (subjectrating<thisscale){ratings[subjind,rulercount+1] <- 999}
+
+    }   
+  }
+
+  allout[s,,] <- output
+  
+}
+save(file='local/allprocessed.RData',list=c('ratings','allout'))
+}
+
+
+```
+
 
 ```{r processing data, include=FALSE}
 
