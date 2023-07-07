@@ -10,4 +10,12 @@ bookdown \
 kableExtra \
 knitr \
 rstatix \
-osfr
+osfr \
+ez \
+lmerTest \
+emmeans \
+MuMIn \
+pwr \
+reshape2 \
+R.matlab \
+ggpubr
