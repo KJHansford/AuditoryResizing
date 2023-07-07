@@ -3,14 +3,11 @@ FROM rocker/verse:4.2.2
 RUN apt-get update -qq
 RUN apt-get -y install git
 
-RUN install2.r -error \
+RUN install2.r –error \
 --deps TRUE \
-osfr \
-R.matlab \
-ez \
-lmerTest \
-emmeans \
-MuMIn \
-pwr \
-reshape2 \
-ggpubr
+rmarkdown \
+bookdown \
+kableExtra \
+knitr \
+rstatix \
+osfr
