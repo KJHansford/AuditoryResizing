@@ -5,13 +5,4 @@ RUN apt-get -y install git
 
 RUN install2.r -error \
 --deps TRUE \
-kableExtra \
-osfr \
-R.matlab \
-ez \
-lmerTest \
-emmeans \
-MuMIn \
-pwr \
-reshape2 \
-ggpubr
+kableExtra
