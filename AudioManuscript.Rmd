@@ -53,15 +53,18 @@ Conclusions: Adding auditory input to illusory finger stretching increased subje
 
 ```{r setup, include=FALSE}
 
-processdata <- 0        # takes about 5 hours to run from scratch
+processdata <- 1        # takes about 5 hours to run from scratch
 
-packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','ggpubr','osfr')
+packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','ggpubr','osfr','jpeg')
 missingpackages <- packagelist[!packagelist %in% installed.packages()[,1]]
 if (length(missingpackages)>0){install.packages(missingpackages)}
 toinstall <- packagelist[which(!packagelist %in% (.packages()))]
 invisible(lapply(toinstall,library,character.only=TRUE))
 
 knitr::opts_chunk$set(echo = TRUE)
+
+threshold <- 0.8   # this is the threshold for the image analysis
+outputimages <- 1  # outputs finger images for checking
 
 if (!dir.exists('local')){dir.create('local')}
 
@@ -138,6 +141,7 @@ Participants were randomly assigned to either the auditory group or the non-audi
 
 if (processdata==1){
 if (!dir.exists('local/rawdata')){dir.create('local/rawdata')}
+if (!dir.exists('local/fingerimages')){dir.create('local/fingerimages')}
 
 osfproject <- osf_retrieve_node("b9s48")
 
@@ -157,7 +161,6 @@ if (!file.exists(paste0('local/rawdata/',osffiles[n,1]))){
 
 sublist <- c(402:440,442:454)
 
-threshold <- 0.8
 allout <- array(0,dim=c(length(sublist),9,6))
 
 for (s in 1:length(sublist)){
@@ -182,6 +185,7 @@ for (s in 1:length(sublist)){
  
     # mirror reverse the image because the camera is pointing at a mirror!
     thisim <- temp$allimages[trial,,1920:1,]
+    imwithdot <- thisim
     
     if (triallist[trial]<7){
       if (triallist[trial]<4){print(paste(subjID,'Right dot touch'))}
@@ -228,10 +232,30 @@ for (s in 1:length(sublist)){
       output[cond,condcount[cond]] <- subjectrating - truepos    
       
       # adjusts the ratings to flag as an out of range trial
-      if (subjectrating>(thisscale + 8)){ratings[subjind,rulercount+1] <- 999}
-      if (subjectrating<thisscale){ratings[subjind,rulercount+1] <- 999}
+      if (subjectrating>(thisscale + 8)){output[cond,condcount[cond]] <- NA}
+      if (subjectrating<thisscale){output[cond,condcount[cond]] <- NA}
 
-    }   
+    } 
+    
+          if (outputimages==1){
+
+    imwithdot[fingertip,,1] <- 0
+    imwithdot[fingertip,,2] <- 255
+    imwithdot[fingertip,,3] <- 0
+
+    if (triallist[trial]>6){
+    imwithdot[rulermin,,1] <- 0
+    imwithdot[rulermin,,2] <- 255
+    imwithdot[rulermin,,3] <- 255
+    
+    imwithdot[rulermax,,1] <- 255
+    imwithdot[rulermax,,2] <- 0
+    imwithdot[rulermax,,3] <- 0
+    }
+    writeJPEG(imwithdot/255,paste0('local/fingerimages/P',subjID,'im',((cond-1)*6) + condcount[cond],'.jpg'))
+
+          }
+    
   }
 
   allout[s,,] <- output
@@ -257,7 +281,7 @@ if (processdata==0){
 
 # Reorganisation of data
 
-meansettings <- apply(allout,1:2,mean)
+meansettings <- apply(allout,1:2,mean,na.rm=TRUE)
 includedindices <- which(ratings[,1] %in% includedsubjects)
 allsettings <- meansettings[includedindices,]
 
