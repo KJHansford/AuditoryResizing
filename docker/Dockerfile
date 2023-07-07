@@ -1,4 +1,4 @@
-FROM rocker/verse:4.2.2
+FROM rocker/verse:4.2.1
 
 RUN apt-get update -qq
 RUN apt-get -y install git
