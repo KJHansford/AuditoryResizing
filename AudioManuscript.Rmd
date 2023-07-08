@@ -53,7 +53,7 @@ Conclusions: Adding auditory input to illusory finger stretching increased subje
 
 ```{r setup, include=FALSE}
 
-processdata <- 0        # takes about 6.5 hours to run from scratch
+processdata <- 1        # takes about 6.5 hours to run from scratch
 
 packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','osfr','jpeg')
 missingpackages <- packagelist[!packagelist %in% installed.packages()[,1]]
@@ -64,7 +64,7 @@ invisible(lapply(toinstall,library,character.only=TRUE))
 knitr::opts_chunk$set(echo = TRUE)
 
 threshold <- 0.7   # this is the threshold for the image analysis
-outputimages <- 1  # outputs finger images for checking
+outputimages <- 0  # outputs finger images for checking
 
 if (!dir.exists('local')){dir.create('local')}
 
@@ -275,7 +275,6 @@ if (processdata==0){
 }
 
 ```
-
 
 ```{r processing data, include=FALSE}
 
