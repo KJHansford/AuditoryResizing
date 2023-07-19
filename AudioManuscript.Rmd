@@ -14,7 +14,7 @@ header-includes:
 - \usepackage{float} \floatplacement{figure}{H}
 - \setcounter{figure}{0}
 indent: yes
-bibliography: references2.bib
+bibliography: references.bib
 link-citations: true
 linkcolor: black
 csl: elife.csl
