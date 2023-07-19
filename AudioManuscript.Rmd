@@ -52,7 +52,7 @@ Conclusions: Adding auditory input to illusory finger stretching increased subje
 
 processdata <- 0        # takes about 6.5 hours to run from scratch
 
-packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','osfr','jpeg')
+packagelist <- c('R.matlab','ggpubr','tidyverse','ez','lmerTest','ggplot2','MuMIn', 'emmeans','kableExtra','gridExtra','pwr','reshape2','rstatix','osfr','jpeg','grid')
 missingpackages <- packagelist[!packagelist %in% installed.packages()[,1]]
 if (length(missingpackages)>0){install.packages(missingpackages)}
 toinstall <- packagelist[which(!packagelist %in% (.packages()))]
@@ -91,6 +91,7 @@ Multisensory processing helps us to perceive a stimulus as a single coherent exp
 The addition of auditory input in the studies mentioned above involve naturalistic auditory input, i.e., experimental auditory input that is consistent with realistic auditory stimuli that we are used to encountering in everyday life. However, @tajadura-jim2017a, looked at the influence of non-naturalistic auditory inputs, to see if this still resulted in changes to body perception. Here, they used changes in pitch, due to their associations with a change in height or size [@hubbard2018a]. Such sounds are not typically associated with bodily movement. They found that when participants pulled their right index finger with their left hand with an accompanying rising pitch sound (700 – 1200Hz), they estimated the length of their index finger to be longer than when this pulling was accompanied with either a descending (700 – 200Hz) or constant (700Hz) tone and coined this the “Auditory Pinocchio” effect (though they did not attempt to stretch participants’ noses).
 
 Given previous findings involving naturalistic auditory input in the rubber hand illusion [@omera2014a] and non-naturalistic auditory input in auditory-tactile resizing manipulations [@tajadura-jim2017a], it is plausible that the addition of non-naturalistic auditory input when using augmented reality to induce visual and visual-tactile resizing illusions, could heighten the experience of the illusory effects, referring again to the notion that the inclusion of more senses provides a more holistic and vivid experience of an event. Measuring the experience of illusory effects often consists of questionnaires given to participants after they have experienced an illusory condition to gain a subjective measure of their experience. However, more performance-based evidence can also be taken from behavioural measures of proprioceptive drift, which is defined as the change in proprioceptively perceived position of the participant's hidden body part [@davies2013a]. Previous studies assessing proprioceptive drift during the rubber hand illusion have found differences regarding the influence on body schema. Body schema are representations of the body based on bottom-up sensory inputs that are needed for action, whereas body image refers to a top-down representation that is needed for perception [@paillard1999a]. @kammers2009a investigated body schema and body image using the rubber hand illusion with a reaching proprioceptive drift task (action movement), where participants were asked to reach with one hand to point to the tip of the index finger of the other hand in a single movement to assess body schema, and were asked to verbally report when the experimenter’s moving finger represented the felt location of their own finger (perceptual task), to assess body image. They found that only the perceptual judgements regarding limb ownership were sensitive to distortion in the rubber hand illusion, finding that action movements, therefore body schema, were not affected. @newport2010a used augmented reality and a dot touch proprioceptive drift task with supernumerary limbs to assess body schema using the rubber hand illusion and found that distortions in body schema were apparent, evidenced through pointing errors in the dot touch task that were consistent with the remapped limb position. 
+
 The terms “subjective” and “performance task” in relation to data regarding bodily experience can be used to refer to several concepts. For the purpose of the current study, the term “subjective” is in reference to data collected from self-report questionnaire, whereas the term “performance task” is taken to refer to data collected from proprioceptive drift and ruler judgement tasks, such as those used by @davies2013a, @kammers2009a and @newport2010a.  This is due to self-report tasks indexing personal, subjective, experience of resizing illusions, whereas proprioceptive drift and ruler judgement tasks index more impartial, performance based, data regarding the effects of resizing illusions on one’s percept of their bodily experience. 
 
 Given previous research showing the additive effects of including several different sensory inputs for overall experience, and the recent evidence of the addition that auditory inputs can have on illusory experience, compared to unimodal stimulation alone, we hypothesise that adding a non-naturalistic auditory input to augmented reality resizing illusions that is consistent with the visual and tactile manipulations of stretching a finger, will (1) heighten conscious subjective illusory experience, measured via a subjective illusory experience questionnaire, for (1a) visuo-tactile and (1b) unimodal-visual manipulations. In addition, we hypothesise (2) that the addition of auditory input will heighten ability on performance tasks, measured using a dot touch proprioceptive drift task that indexes body schema for (2a) visuo-tactile and (2b) unimodal-visual manipulations. We also hypothesise that the addition of auditory input will heighten ability on performance tasks measured using a ruler judgement task that indexes body image for (3a) visuo-tactile and (3b) unimodal-visual manipulations. The inclusion of two different proprioceptive drift tasks, a dot touch task and a ruler judgement task, is to address the previous discordance of findings from @kammers2009a and @newport2010a, relating to body image and body schema.
@@ -284,7 +285,7 @@ if (processdata==0){
 
 ```
 
-```{r processing data, include=FALSE}
+```{r processdata, include=FALSE}
 
 # Reorganisation of data
 
@@ -447,7 +448,6 @@ subjective_data_factors = subjective_data %>%
 
 ```
 
-
 ```{r analysis, include=FALSE}
 ## Subjective Analyses ##
 
@@ -457,18 +457,8 @@ lmeresults1 <- lmer(Illusion.1.Score ~ Condition + Group + Condition*Group + (1 
 lmeanova1 <- anova(lmeresults1)
 lmeranova1 <- ranova(lmeresults1) #random effects
 
-
 r2_1 <- r.squaredGLMM(lmeresults1) 
-r2_1
 
-#plot data
-Illusion1plot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Illusion.1.Score", 
-                           color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                           add = "jitter" )+ ylab("Subjective Illusion Score") + xlab("Condition")
-
-
-ggsave('figures/Illusion1.pdf', Illusion1plot, width = 7, height = 5, dpi = 300)
-            
 #Q-Q Plots
 lmeresults1residuals <- resid(lmeresults1) # extract the residuals
 qqnorm(lmeresults1residuals) # create the plot
@@ -519,11 +509,6 @@ anova(lmeresults2)
 r2_2 <- r.squaredGLMM(lmeresults2)
 r2_2 
 
-#Plot Data
-Illusion2plot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Illusion.2.Score", color = "Group",palette = c("#00AFBB", "#FC4E07"), add = "jitter" )
-
-ggsave('figures/Illusion2.pdf', Illusion2plot, width = 5, height = 5, dpi = 300)
-
 #Get means for each condition
 meansBL <- group_by(filtered.data_Baseline, Group) %>%
   summarise(
@@ -558,11 +543,6 @@ anova(lmeresults3)
 
 r2_3 <- r.squaredGLMM(lmeresults3)
 r2_3
-
-#plot data
-Disownershipplot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Disownership.Average", color = "Group", palette = c("#00AFBB", "#FC4E07"), add = "jitter" )
-
-ggsave('figures/disownershipaverage.pdf', Disownershipplot, width = 5, height = 5, dpi = 300)
 
 #Get means for each condition
 meansBLD <- group_by(filtered.data_Baseline, Group) %>%
@@ -611,11 +591,6 @@ anova(lmeresults4)
 r2_4 <- r.squaredGLMM(lmeresults4)
 r2_4
 
-#plot data
-Controlplot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Control.Average", color = "Group",palette = c("#00AFBB", "#FC4E07"), add = "jitter" )
-
-ggsave('figures/controlaverage.pdf', Controlplot, width = 5, height = 5, dpi = 300)
-
 #Get means for each condition
 meansBLC <- group_by(filtered.data_Baseline, Group) %>%
   summarise(
@@ -644,6 +619,10 @@ qqline(lmeresults4residuals) # add the diagonal line
 #Shapiro-Wilk Test
 shapiro.test(subjective_data_factors$Control.Average)
 
+```
+
+```{r objectiveanalysis, include=FALSE}
+
 ## Objective analyses ##
 
 ### --- ###
@@ -665,16 +644,6 @@ lmeranova5 <- ranova(lmeresults5)
 
 r2_5 <- r.squaredGLMM(lmeresults5)
 r2_5
-
-
-#Plot Data
-PCrightdotplot <- ggboxplot(allsettingsright_formatted, x = "condition", y = "score", 
-                            color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                            add = "jitter")+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
-
-PCrightdotplot <- ggpar(PCrightdotplot, ylim = c(-4, 2))
-
-ggsave('figures/PCrightdot.pdf', PCrightdotplot, width = 5, height = 5, dpi = 300)
 
 #Q-Q Plots
 lmeresults5residuals <- resid(lmeresults5) # extract the residuals
@@ -707,14 +676,7 @@ lmeranova6 <- ranova(lmeresults6)
 r2_6 <- r.squaredGLMM(lmeresults6)
 r2_6
 
-#Plot Data
-PCleftdotplot <- ggboxplot(allsettingsleft_formatted, x = "condition", y = "score", 
-                           color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                           add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
 
-PCleftdotplot <- ggpar(PCleftdotplot, ylim = c(-4, 2))
-
-ggsave('figures/PCleftdot.pdf', PCleftdotplot, width = 5, height = 5, dpi = 300)
 #Q-Q Plots
 lmeresults6residuals <- resid(lmeresults6) # extract the residuals
 qqnorm(lmeresults6residuals) # create the plot
@@ -749,17 +711,6 @@ lmeranova7 <- ranova(lmeresults7)
 r2_7 <- r.squaredGLMM(lmeresults7)
 r2_7
 
-#Plot Data
-PCrulerplot <- ggboxplot(allsettingsruler_formatted, x = "condition", y = "score", 
-                         color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                         add = "jitter" )+ ylab("Percieved Length (cm)") + xlab("Condition")
-
-PCrulerplot <- ggpar(PCrulerplot, ylim = c(-5, 5))
-
-
-ggsave('figures/PCruler.pdf', PCrulerplot, width = 5, height = 5, dpi = 300)
-
-
 #Q-Q Plots
 lmeresults7residuals <- resid(lmeresults7) # extract the residuals
 qqnorm(lmeresults7residuals) # create the plot
@@ -791,14 +742,6 @@ lmeranova8 <- ranova(lmeresults8)
 r2_8 <- r.squaredGLMM(lmeresults8)
 r2_8
 
-#Plot Data
-normrightdotplot <- ggboxplot(normsettingsright_formatted, x = "condition", y = "score", 
-                              color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                              add = "jitter")+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
-normrightdotplot <- ggpar(normrightdotplot, ylim = c(-2, 2))
-
-
-ggsave('figures/normrightdot.pdf', normrightdotplot, width = 5, height = 5, dpi = 300)
 #Q-Q Plots
 lmeresults8residuals <- resid(lmeresults8) # extract the residuals
 qqnorm(lmeresults8residuals) # create the plot
@@ -826,14 +769,6 @@ lmeranova9 <- ranova(lmeresults9)
 
 r2_9 <- r.squaredGLMM(lmeresults9)
 r2_9
-
-#Plot Data
-normleftdotplot <- ggboxplot(normsettingsleft_formatted, x = "condition", y = "score", 
-                             color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                             add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
-normleftdotplot <- ggpar(normleftdotplot, ylim = c(-2, 2))
-
-ggsave('figures/normleftdot.pdf', normleftdotplot, width = 5, height = 5, dpi = 300)
 
 #Q-Q Plots
 lmeresults9residuals <- resid(lmeresults9) # extract the residuals
@@ -878,14 +813,6 @@ lmeranova10 <- ranova(lmeresults10)
 r2_10 <- r.squaredGLMM(lmeresults10)
 r2_10
 
-#Plot Data
-normrulerplot <- ggboxplot(normsettingsruler_formatted, x = "condition", y = "score", 
-                           color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                           add = "jitter" )+ ylab("Relative Percieved Length (cm)") + xlab("Condition")
-
-
-ggsave('figures/normruler.pdf', normrulerplot, width = 5, height = 5, dpi = 300)
-
 #Q-Q Plots
 lmeresults10residuals <- resid(lmeresults10) # extract the residuals
 qqnorm(lmeresults10residuals) # create the plot
@@ -893,6 +820,129 @@ qqline(lmeresults10residuals) # add the diagonal line
 
 #Shapiro-Wilk Test
 shapiro.test(normsettingsruler_formatted$score)
+
+```
+
+```{r plotillusion, include=FALSE}
+
+#plot data
+Illusion1plot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Illusion.1.Score", 
+                           color = "Group", palette = c("#00AFBB", "#FC4E07"), 
+                           add = "jitter" )+ ylab("Subjective Illusion Score") + xlab("Condition")
+
+
+ggsave('figures/Illusion1.pdf', Illusion1plot, width = 7, height = 5, dpi = 300)
+
+#Plot Data
+Illusion2plot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Illusion.2.Score", color = "Group",palette = c("#00AFBB", "#FC4E07"), add = "jitter" )
+
+ggsave('figures/Illusion2.pdf', Illusion2plot, width = 5, height = 5, dpi = 300)
+
+```
+
+```{r plotdisownership, include=FALSE}
+
+#plot data
+Disownershipplot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Disownership.Average", color = "Group", palette = c("#00AFBB", "#FC4E07"), add = "jitter" )
+
+ggsave('figures/disownershipaverage.pdf', Disownershipplot, width = 5, height = 5, dpi = 300)
+
+```
+
+```{r plotcontrol, include=FALSE}
+
+#plot data
+Controlplot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Control.Average", color = "Group",palette = c("#00AFBB", "#FC4E07"), add = "jitter" )
+
+ggsave('figures/controlaverage.pdf', Controlplot, width = 5, height = 5, dpi = 300)
+
+```
+
+```{r plotdottask, include=FALSE}
+
+#Plot Data
+PCrightdotplot <- ggboxplot(allsettingsright_formatted, x = "condition", y = "score", 
+                            color = "Group", palette = c("#00AFBB", "#FC4E07"), 
+                            add = "jitter")+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
+
+PCrightdotplot <- ggpar(PCrightdotplot, ylim = c(-4, 2))
+
+ggsave('figures/PCrightdot.pdf', PCrightdotplot, width = 5, height = 5, dpi = 300)
+
+
+#Plot Data
+PCleftdotplot <- ggboxplot(allsettingsleft_formatted, x = "condition", y = "score", 
+                           color = "Group", palette = c("#00AFBB", "#FC4E07"), 
+                           add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
+
+PCleftdotplot <- ggpar(PCleftdotplot, ylim = c(-4, 2))
+
+ggsave('figures/PCleftdot.pdf', PCleftdotplot, width = 5, height = 5, dpi = 300)
+
+```
+
+```{r plotruler, include=FALSE}
+
+#Plot Data
+PCrulerplot <- ggboxplot(allsettingsruler_formatted, x = "condition", y = "score", 
+                         color = "Group", palette = c("#00AFBB", "#FC4E07"), 
+                         add = "jitter" )+ ylab("Percieved Length (cm)") + xlab("Condition")
+
+PCrulerplot <- ggpar(PCrulerplot, ylim = c(-5, 5))
+
+
+ggsave('figures/PCruler.pdf', PCrulerplot, width = 5, height = 5, dpi = 300)
+
+```
+
+```{r plotnormalizeddots, include=FALSE}
+
+pdf('figures/normdots.pdf',width=11,height=5)
+
+par(mar=c(0,0,0,0))
+plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
+arrows(0.48,0.55,x1=0.48,y1=0.9,length=0.1,angle=30,lwd=3)
+arrows(0.48,0.45,x1=0.48,y1=0.1,length=0.1,angle=30,lwd=3)
+text(0.51,0.725,'Underestimated length',srt=90)
+text(0.51,0.275,'Overestimated length',srt=90)
+
+#Plot Data
+normrightdotplot <- ggboxplot(normsettingsright_formatted, x = "condition", y = "score", 
+                              color = "Group", palette = c("#00AFBB", "#FC4E07"), 
+                              add = "jitter")+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
+normrightdotplot <- ggpar(normrightdotplot, ylim = c(-2, 2))
+
+
+#Plot Data
+normleftdotplot <- ggboxplot(normsettingsleft_formatted, x = "condition", y = "score", 
+                             color = "Group", palette = c("#00AFBB", "#FC4E07"), 
+                             add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
+normleftdotplot <- ggpar(normleftdotplot, ylim = c(-2, 2))
+
+grid.arrange(normrightdotplot,NULL,normleftdotplot, ncol=3, widths=c(5,1,5), newpage=FALSE)
+
+dev.off()
+
+```
+
+```{r plotnormalizedruler, include=FALSE}
+
+pdf('figures/normruler.pdf',width=6,height=5)
+
+par(mar=c(0,0,0,0))
+plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
+arrows(0.9,0.5,x1=0.9,y1=0.8,length=0.1,angle=30,lwd=3)
+arrows(0.9,0.4,x1=0.9,y1=0.1,length=0.1,angle=30,lwd=3)
+text(0.95,0.65,'Perceived longer',srt=90)
+text(0.95,0.25,'Perceived shorter',srt=90)
+
+#Plot Data
+normrulerplot <- ggboxplot(normsettingsruler_formatted, x = "condition", y = "score", color = "Group", palette = c("#00AFBB", "#FC4E07"), add = "jitter" )+ ylab("Relative Percieved Length (cm)") + xlab("Condition")
+
+grid.arrange(normrulerplot, ncol=2, widths=c(5,1), newpage=FALSE)
+
+
+dev.off()
 
 ```
 
@@ -908,9 +958,9 @@ Positive control analyses were first run on the performance data to check that w
 
 We then addressed hypothesis 2, that the addition of auditory input would heighten ability on performance tasks, using a dot touch proprioceptive drift task as an index of body schema for (2a) visuo-tactile and (2b) unimodal-visual manipulations (see Figure 3). Again, a random intercepts linear mixed effects model with fixed effects being group and condition, and a random effect of participant, was used to assess if there was an effect of group (Audio Vs Non-Audio) on dot touch data in the V/VA and VT/VTA conditions. Analysis on right dot touch data showed no significant interaction between condition and group *F*(`r round(lmeanova8$NumDF[3], digits = 2)`, `r round(lmeanova8$DenDF[3], digits = 2)`) = `r round(lmeanova8$"F value"[3], digits = 2)`, *p* = `r format.pval(lmeanova8$"Pr(>F)"[3], digits = 1, eps = 0.001, nsmall = 3)` and simple main effects showed no effect of condition (*p* = `r format.pval(lmeanova8$"Pr(>F)"[1], digits = 1, eps = 0.001, nsmall = 3)`) or group (*p* = `r format.pval(lmeanova8$"Pr(>F)"[2], digits = 1, eps = 0.001, nsmall = 3)`). The random effects term did not make a significant contribution to the fit of the model (*p* = `r format.pval(lmeranova8$"Pr(>Chisq)"[2], digits = 1, eps = 0.001, nsmall = 3)`), and the marginal R² value was `r round(r2_8[1]*100, digits = 2)`% with the conditional R² value being `r round(r2_8[2]*100, digits = 2)`%. Analysis on left dot touch data showed no significant interaction between condition and group *F*(`r round(lmeanova9$NumDF[3], digits = 2)`, `r round(lmeanova8$DenDF[3], digits = 2)`) = `r round(lmeanova9$"F value"[3], digits = 2)`, *p* = `r format.pval(lmeanova9$"Pr(>F)"[3], digits = 1, eps = 0.001, nsmall = 3)` whilst simple main effects showed no effect of group (*p* = `r format.pval(lmeanova9$"Pr(>F)"[2], digits = 1, eps = 0.001, nsmall = 3)`) but did show an effect of condition (*p* = `r format.pval(lmeanova9$"Pr(>F)"[1], digits = 1, eps = 0.001, nsmall = 3)`), with participants placing their finger significantly lower in the V/VA condition (M =`r round(means9$mean[1], digits = 2)`, SD =`r round(means9$sd[1], digits = 2)`) compared to the VT/VTA condition (M =`r round(means9$mean[2], digits = 2)`, SD =`r round(means9$sd[2], digits = 2)`). The random effects term made a significant contribution to the fit of the model (*p* = `r format.pval(lmeranova9$"Pr(>Chisq)"[2], digits = 1, eps = 0.001, nsmall = 3)`), and the marginal R² value was `r round(r2_9[1]*100, digits = 2)`% with the conditional R² value being `r round(r2_9[2]*100, digits = 2)`%.
 
-```{r figure3, fig.cap="Dot Touch Data in relative centimetres for V/VA and VT/VTA conditions for both left and right hand data. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote the direction of finger length estimation.", fig.show='hold', fig.align='center', out.width="40%", echo=FALSE}
+```{r figure3, fig.cap="Dot Touch Data in relative centimetres for V/VA and VT/VTA conditions for both left and right hand data. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote the direction of finger length estimation.", fig.show='hold', fig.align='center', out.width="95%", echo=FALSE}
 
-knitr::include_graphics(c('figures/normleftdot.pdf','figures/Figure 3 arrows.png', 'figures/normrightdot.pdf'))
+knitr::include_graphics(c('figures/normdots.pdf'))
 
 ```
 
@@ -918,7 +968,7 @@ Finally, we assesed hypothesis 3, that the addition of auditory input would heig
 
 ```{r figure4, fig.cap="Ruler Judgement data in relative centimeters for V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote direction of perceived finger length.", fig.show='hold', fig.align='center', out.width="50%", echo=FALSE}
 
-knitr::include_graphics(c('figures/normruler.pdf', 'figures/Figure 4 arrows.png'))
+knitr::include_graphics(c('figures/normruler.pdf'))
 
 ```
 
