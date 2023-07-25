@@ -828,7 +828,10 @@ shapiro.test(normsettingsruler_formatted$score)
 #plot data
 Illusion1plot <- ggboxplot(subjective_data_factors, x = "Condition", y = "Illusion.1.Score", 
                            color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                           add = "jitter" )+ ylab("Subjective Illusion Score") + xlab("Condition")
+                           add = "jitter" )+ ylab("Subjective Illusion Score") + xlab("Condition") + geom_bracket(
+    xmin = 1.80, xmax = 2.20, y.position = 105,
+    label = "*")
+
 
 
 ggsave('figures/Illusion1.pdf', Illusion1plot, width = 7, height = 5, dpi = 300)
@@ -863,9 +866,11 @@ ggsave('figures/controlaverage.pdf', Controlplot, width = 5, height = 5, dpi = 3
 #Plot Data
 PCrightdotplot <- ggboxplot(allsettingsright_formatted, x = "condition", y = "score", 
                             color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                            add = "jitter")+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
+                            add = "jitter")+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition") + geom_bracket(
+    xmin = c("RightDotBaseline", "RightDotBaseline"), xmax = c("RightDotV/VA", "RightDotVT/VTA"),
+    y.position = c(2.2, 2.9), label = c("***", "***"))
 
-PCrightdotplot <- ggpar(PCrightdotplot, ylim = c(-4, 2))
+PCrightdotplot <- ggpar(PCrightdotplot, ylim = c(-4, 3))
 
 ggsave('figures/PCrightdot.pdf', PCrightdotplot, width = 5, height = 5, dpi = 300)
 
@@ -873,9 +878,11 @@ ggsave('figures/PCrightdot.pdf', PCrightdotplot, width = 5, height = 5, dpi = 30
 #Plot Data
 PCleftdotplot <- ggboxplot(allsettingsleft_formatted, x = "condition", y = "score", 
                            color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                           add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
+                           add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition") + geom_bracket(
+    xmin = c("LeftDotBaseline", "LeftDotBaseline"), xmax = c("LeftDotV/VA", "LeftDotVT/VTA"),
+    y.position = c(2.2, 2.9), label = c("***", "*"))
 
-PCleftdotplot <- ggpar(PCleftdotplot, ylim = c(-4, 2))
+PCleftdotplot <- ggpar(PCleftdotplot, ylim = c(-4, 3))
 
 ggsave('figures/PCleftdot.pdf', PCleftdotplot, width = 5, height = 5, dpi = 300)
 
@@ -886,7 +893,9 @@ ggsave('figures/PCleftdot.pdf', PCleftdotplot, width = 5, height = 5, dpi = 300)
 #Plot Data
 PCrulerplot <- ggboxplot(allsettingsruler_formatted, x = "condition", y = "score", 
                          color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                         add = "jitter" )+ ylab("Percieved Length (cm)") + xlab("Condition")
+                         add = "jitter" )+ ylab("Percieved Length (cm)") + xlab("Condition") + geom_bracket(
+    xmin = c("RulerBaseline", "RulerBaseline"), xmax = c("RulerV/VA", "RulerVT/VTA"),
+    y.position = c(3.3, 4), label = c("***", "***"))
 
 PCrulerplot <- ggpar(PCrulerplot, ylim = c(-5, 5))
 
@@ -916,10 +925,12 @@ normrightdotplot <- ggpar(normrightdotplot, ylim = c(-2, 2))
 #Plot Data
 normleftdotplot <- ggboxplot(normsettingsleft_formatted, x = "condition", y = "score", 
                              color = "Group", palette = c("#00AFBB", "#FC4E07"), 
-                             add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition")
+                             add = "jitter" )+ ylab("Dot Touch Accuracy (cm)") + xlab("Condition") + geom_bracket(
+    xmin = "LeftDotV/VA", xmax = "LeftDotVT/VTA", y.position = 1.75,
+    label = "***")
 normleftdotplot <- ggpar(normleftdotplot, ylim = c(-2, 2))
 
-grid.arrange(normrightdotplot,NULL,normleftdotplot, ncol=3, widths=c(5,1,5), newpage=FALSE)
+grid.arrange(normleftdotplot,NULL,normrightdotplot, ncol=3, widths=c(5,1,5), newpage=FALSE)
 
 dev.off()
 
