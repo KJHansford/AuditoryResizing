@@ -1,6 +1,6 @@
 These materials are a computationally reproducible version of the paper:
 
-Hansford, K., McKenzie, K., Baker, D.H. & Preston, C.E. (2023). The Effect of Non-Naturalistic Auditory Input on Conscious and Unconscious Experiences of Resizing Illusions
+Hansford, K.J., Baker, D.H., McKenzie, K.J. & Preston, C.E. (2023). Multisensory Integration and Proprioceptive Drift During Resizing Illusions. Preprint: https://doi.org/10.31234/osf.io/n56ha
 
 The file AudioManuscript.Rmd is an R markdown file that will perform all analyses and figure creation, and produce a pdf version of the manuscript.
 
