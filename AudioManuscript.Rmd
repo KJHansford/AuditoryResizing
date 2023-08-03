@@ -12,8 +12,12 @@ header-includes:
 - \usepackage{float}
 - \usepackage{float} \floatplacement{figure}{H}
 - \setcounter{figure}{0}
+- \newcommand{\beginsupplement}{\setcounter{table}{1}  
+- \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{1} 
+- \renewcommand{\thefigure}{S\arabic{figure}}}
+- \usepackage{caption}
 indent: yes
-bibliography: references3.bib
+bibliography: references.bib
 link-citations: true
 linkcolor: black
 csl: elife.csl
@@ -1055,9 +1059,11 @@ A video of a participant undergoing a visual-tactile illusion can be seen at the
 
 \vspace{15mm}
 
+\beginsupplement
+
 S2. Ownership Data
 
-```{r figure5, fig.cap="Ownership data for participants across all conditions. Each mean rating is above 50 indicating experience of ownership of the hand during the illusion (Baseline Audio: M = 82.4, SD = 30.6, Baseline Non-audio: M = 89.7, SD = 15.1, V/VA Audio: M = 58.4, SD = 31.3, V/VA Non-Audio: M = 52.3, SD = 27.9, VT/VTA Audio: M = 64.9, SD = 30.8, VT/VTA Non-Audio: M = 73.4, SD = 25.8).", fig.align='center', out.width="50%", echo=FALSE}
+```{r figureS2, fig.cap="Ownership data for participants across all conditions. Each mean rating is above 50 indicating experience of ownership of the hand during the illusion (Baseline Audio: M = 82.4, SD = 30.6, Baseline Non-audio: M = 89.7, SD = 15.1, V/VA Audio: M = 58.4, SD = 31.3, V/VA Non-Audio: M = 52.3, SD = 27.9, VT/VTA Audio: M = 64.9, SD = 30.8, VT/VTA Non-Audio: M = 73.4, SD = 25.8).", fig.align='center', out.width="50%", echo=FALSE}
 
 knitr::include_graphics('figures/Illusion2.pdf')
 
@@ -1067,7 +1073,7 @@ knitr::include_graphics('figures/Illusion2.pdf')
 
 S3. Disownership Data
 
-```{r figure6, fig.cap="Disownership average data for participants across all conditions. Each mean rating is below 50 indicating experience of no experiences of disownership of the hand during the illusion (Baseline Audio: M = 5.21, SD = 8.93, Baseline Non-audio: M = 8.33, SD = 13.6, V/VA Audio: M = 38.4, 29.0, V/VA Non-Audio: M = 40.5, 32.0, VT/VTA Audio: M = 26.4, SD = 25.6, VT/VTA Non-Audio: M = 18.2, 24.6).", fig.align='center', out.width="50%", echo=FALSE}
+```{r figureS3, fig.cap="Disownership average data for participants across all conditions. Each mean rating is below 50 indicating experience of no experiences of disownership of the hand during the illusion (Baseline Audio: M = 5.21, SD = 8.93, Baseline Non-audio: M = 8.33, SD = 13.6, V/VA Audio: M = 38.4, 29.0, V/VA Non-Audio: M = 40.5, 32.0, VT/VTA Audio: M = 26.4, SD = 25.6, VT/VTA Non-Audio: M = 18.2, 24.6).", fig.align='center', out.width="50%", echo=FALSE}
 
 knitr::include_graphics('figures/disownershipaverage.pdf')
 
@@ -1075,7 +1081,7 @@ knitr::include_graphics('figures/disownershipaverage.pdf')
 
 S4. Control Data
 
-```{r figure7, fig.cap="Control average data for participants across all conditions. Each mean rating is below 50 indicating no violation of control statements during the illusion (Baseline Audio: M= 4.12, SD = 8.55, Baseline Non-audio: M = 4.09, SD = 6.76, V/VA Audio: M = 10.5, SD = 13.2, V/VA Non-Audio: M = 7.91, SD = 16.0, VT/VTA Audio: M = 8.81, SD = 11.2, VT/VTA Non-Audio: M = 3.17, SD = 5.49).", fig.align='center', out.width="50%", echo=FALSE}
+```{r figureS4, fig.cap="Control average data for participants across all conditions. Each mean rating is below 50 indicating no violation of control statements during the illusion (Baseline Audio: M= 4.12, SD = 8.55, Baseline Non-audio: M = 4.09, SD = 6.76, V/VA Audio: M = 10.5, SD = 13.2, V/VA Non-Audio: M = 7.91, SD = 16.0, VT/VTA Audio: M = 8.81, SD = 11.2, VT/VTA Non-Audio: M = 3.17, SD = 5.49).", fig.align='center', out.width="50%", echo=FALSE}
 
 knitr::include_graphics('figures/controlaverage.pdf')
 
@@ -1085,7 +1091,7 @@ knitr::include_graphics('figures/controlaverage.pdf')
 
 S5. Positive Control Right Dot Touch
 
-```{r figure8, fig.cap="Dot Touch Data in centimetres for Baseline, V/VA, and VT/VTA conditions for right hand data. Group is indicated by colour, with red showing the no audio group and blue showing the audio group.", fig.align='center', out.width="50%", echo=FALSE}
+```{r figureS5, fig.cap="Dot Touch Data in centimetres for Baseline, V/VA, and VT/VTA conditions for right hand data. Group is indicated by colour, with red showing the no audio group and blue showing the audio group.", fig.align='center', out.width="50%", echo=FALSE}
 
 knitr::include_graphics('figures/PCrightdot.pdf')
 
@@ -1094,7 +1100,7 @@ knitr::include_graphics('figures/PCrightdot.pdf')
 
 S6. Positive Control left Dot Touch
 
-```{r figure9, fig.cap="Dot Touch Data in centimetres for Baseline, V/VA, and VT/VTA conditions for left hand data. Group is indicated by colour, with red showing the no audio group and blue showing the audio group.", fig.align='center', out.width="50%", echo=FALSE}
+```{r figureS6, fig.cap="Dot Touch Data in centimetres for Baseline, V/VA, and VT/VTA conditions for left hand data. Group is indicated by colour, with red showing the no audio group and blue showing the audio group.", fig.align='center', out.width="50%", echo=FALSE}
 
 knitr::include_graphics('figures/PCleftdot.pdf')
 
@@ -1104,7 +1110,7 @@ knitr::include_graphics('figures/PCleftdot.pdf')
 
 S7. Positive Control Ruler Judgement
 
-```{r figure10, fig.cap="DRuler Judgement data in centimetres for baseline, V/VA, and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group.", fig.align='center', out.width="50%", echo=FALSE}
+```{r figureS7, fig.cap="Ruler Judgement data in centimetres for baseline, V/VA, and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group.", fig.align='center', out.width="50%", echo=FALSE}
 
 knitr::include_graphics('figures/PCruler.pdf')
 
