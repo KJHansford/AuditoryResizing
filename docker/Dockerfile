@@ -12,10 +12,16 @@ knitr \
 rstatix \
 osfr \
 ez \
-lmerTest \
-emmeans \
-MuMIn \
 pwr \
 reshape2 \
 R.matlab \
-ggpubr
+ggpubr \
+gridExtra \
+jpeg \
+grid \
+plotrix \
+lavaan \
+cowplot \
+readr \
+caTools \
+bitops

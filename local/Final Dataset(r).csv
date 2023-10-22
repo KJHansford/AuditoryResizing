@@ -1,0 +1,157 @@
+PID,Gender,Age,Group,Condition,Illusion 1 Score,Illusion 2 Score,Disownership 1 Score,Disownership 2 Score,Disownership Average,Control 1 Score,Control 2 Score,Control Average
+402,Female,19,Audio,Baseline Illusion ,69,87,15,11,13,15,7,11
+402,,,Audio,V/VA Illusion ,61,72,19,19,19,27,7,17
+402,,,Audio,VT/VTA Illusion ,90,89,5,2,3.5,8,0,4
+403,Female,20,No Audio,Baseline Illusion ,1,100,1,1,1,1,1,1
+403,,,No Audio,V/VA Illusion ,41,39,64,35,49.5,8,2,5
+403,,,No Audio,VT/VTA Illusion ,90,64,43,12,27.5,12,12,12
+404,Male,19,Audio,Baseline Illusion ,8,9,8,8,8,10,11,10.5
+404,,,Audio,V/VA Illusion ,10,11,11,10,10.5,11,11,11
+404,,,Audio,VT/VTA Illusion ,72,71,14,15,14.5,15,17,16
+405,Female,18,Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+405,,,Audio,V/VA Illusion ,100,32,0,22,11,0,69,34.5
+405,,,Audio,VT/VTA Illusion ,100,32,25,29,27,8,0,4
+406,Female,24,No Audio,Baseline Illusion ,51,82,54,52,53,49,47,48
+406,,,No Audio,V/VA Illusion ,77,37,85,39,62,67,48,57.5
+406,,,No Audio,VT/VTA Illusion ,81,52,52,50,51,52,52,52
+407,Male,21,No Audio,Baseline Illusion ,81,79,77,80,78.5,83,0,41.5
+407,,,No Audio,V/VA Illusion ,82,82,85,79,82,77,0,38.5
+407,,,No Audio,VT/VTA Illusion ,71,85,71,73,72,78,0,39
+408,Male,18,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+408,,,No Audio,V/VA Illusion ,54,47,31,0,15.5,0,0,0
+408,,,No Audio,VT/VTA Illusion ,98,100,0,0,0,0,0,0
+409,Female,19,No Audio,Baseline Illusion ,2,82,3,3,3,2,3,2.5
+409,,,No Audio,V/VA Illusion ,24,62,24,25,24.5,8,8,8
+409,,,No Audio,VT/VTA Illusion ,40,71,14,13,13.5,2,4,3
+410,Female,20,Audio,Baseline Illusion ,98,75,32,0,16,0,0,0
+410,,,Audio,V/VA Illusion ,10,0,60,19,39.5,0,0,0
+410,,,Audio,VT/VTA Illusion ,100,42,0,0,0,0,0,0
+411,Female,18,Audio,Baseline Illusion ,30,90,12,8,10,2,2,2
+411,,,Audio,V/VA Illusion ,83,81,23,7,15,4,5,4.5
+411,,,Audio,VT/VTA Illusion ,49,83,9,7,8,6,6,6
+412,Female,20,Audio,Baseline Illusion ,0,0,0,0,0,0,0,0
+412,,,Audio,V/VA Illusion ,100,80,11,12,11.5,0,0,0
+412,,,Audio,VT/VTA Illusion ,100,82,10,11,10.5,0,0,0
+413,Female,20,Audio,Baseline Illusion ,5,98,0,0,0,0,0,0
+413,,,Audio,V/VA Illusion ,61,80,24,17,20.5,9,8,8.5
+413,,,Audio,VT/VTA Illusion ,94,70,45,35,40,30,11,20.5
+414,Female,19,Audio,Baseline Illusion ,3,90,2,2,2,1,1,1
+414,,,Audio,V/VA Illusion ,81,80,46,50,48,3,3,3
+414,,,Audio,VT/VTA Illusion ,81,71,11,3,7,3,2,2.5
+415,Female,19,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+415,,,No Audio,V/VA Illusion ,0,54,89,87,88,0,0,0
+415,,,No Audio,VT/VTA Illusion ,100,0,86,76,81,0,0,0
+416,Female,18,Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+416,,,Audio,V/VA Illusion ,61,19,87,87,87,5,2,3.5
+416,,,Audio,VT/VTA Illusion ,100,100,11,12,11.5,0,12,6
+417,Female,20,Audio,Baseline Illusion ,7,89,11,10,10.5,12,11,11.5
+417,,,Audio,V/VA Illusion ,81,70,11,13,12,15,16,15.5
+417,,,Audio,VT/VTA Illusion ,89,9,75,72,73.5,10,7,8.5
+418,Female,18,No Audio,Baseline Illusion ,0,86,5,16,10.5,0,0,0
+418,,,No Audio,V/VA Illusion ,69,89,6,13,9.5,0,0,0
+418,,,No Audio,VT/VTA Illusion ,85,80,1,0,0.5,0,0,0
+419,Female ,18,No Audio,Baseline Illusion ,9,59,0,14,7,10,24,17
+419,,,No Audio,V/VA Illusion ,89,1,41,43,42,0,19,9.5
+419,,,No Audio,VT/VTA Illusion ,80,23,34,37,35.5,2,2,2
+420,Female,19,No Audio,Baseline Illusion ,71,91,20,16,18,16,15,15.5
+420,,,No Audio,V/VA Illusion ,22,21,66,66,66,16,62,39
+420,,,No Audio,VT/VTA Illusion ,83,84,13,14,13.5,10,27,18.5
+421,Female,18,Audio,Baseline Illusion ,0,84,23,20,21.5,1,0,0.5
+421,,,Audio,V/VA Illusion ,62,81,19,22,20.5,11,11,11
+421,,,Audio,VT/VTA Illusion ,80,71,16,10,13,11,12,11.5
+422,Female,20,No Audio,Baseline Illusion ,10,68,16,14,15,10,8,9
+422,,,No Audio,V/VA Illusion ,37,34,58,75,66.5,40,93,66.5
+422,,,No Audio,VT/VTA Illusion ,75,86,13,12,12.5,12,7,9.5
+423,Female,18,Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+423,,,Audio,V/VA Illusion ,100,100,3,0,1.5,0,0,0
+423,,,Audio,VT/VTA Illusion ,100,87,0,0,0,0,0,0
+424,Female ,21,No Audio,Baseline Illusion ,8,100,12,13,12.5,14,14,14
+424,,,No Audio,V/VA Illusion ,11,11,81,81,81,53,11,32
+424,,,No Audio,VT/VTA Illusion ,92,73,10,11,10.5,10,11,10.5
+425,Female,19,No Audio,Baseline Illusion ,0,100,10,0,5,0,0,0
+425,,,No Audio,V/VA Illusion ,70,71,29,10,19.5,0,0,0
+425,,,No Audio,VT/VTA Illusion ,100,92,9,8,8.5,0,0,0
+426,Female,20,Audio,Baseline Illusion ,2,82,2,3,2.5,3,0,1.5
+426,,,Audio,V/VA Illusion ,10,78,40,61,50.5,2,0,1
+426,,,Audio,VT/VTA Illusion ,91,98,13,8,10.5,0,21,10.5
+427,Female,19,Audio,Baseline Illusion ,65,100,0,0,0,60,20,40
+427,,,Audio,V/VA Illusion ,70,90,10,25,17.5,20,20,20
+427,,,Audio,VT/VTA Illusion ,84,90,10,60,35,30,20,25
+428,Female,20,Audio,Baseline Illusion ,71,60,30,31,30.5,8,8,8
+428,,,Audio,V/VA Illusion ,9,10,59,61,60,13,24,18.5
+428,,,Audio,VT/VTA Illusion ,74,70,17,13,15,14,13,13.5
+429,Female,20,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+429,,,No Audio,V/VA Illusion ,76,80,39,32,35.5,0,0,0
+429,,,No Audio,VT/VTA Illusion ,68,92,18,10,14,0,0,0
+430,Non binary ,18,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+430,,,No Audio,V/VA Illusion ,31,68,0,8,4,0,0,0
+430,,,No Audio,VT/VTA Illusion ,83,92,0,23,11.5,0,39,19.5
+431,Female,20,Audio,Baseline Illusion ,6,25,41,26,33.5,5,5,5
+431,,,Audio,V/VA Illusion ,100,5,66,66,66,3,3,3
+431,,,Audio,VT/VTA Illusion ,82,2,61,60,60.5,1,2,1.5
+432,Female,19,Audio,Baseline Illusion ,0,90,1,0,0.5,0,0,0
+432,,,Audio,V/VA Illusion ,18,24,76,78,77,13,0,6.5
+432,,,Audio,VT/VTA Illusion ,19,30,63,63,63,5,0,2.5
+433,Female,20,Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+433,,,Audio,V/VA Illusion ,31,27,80,82,81,0,0,0
+433,,,Audio,VT/VTA Illusion ,86,88,0,0,0,0,0,0
+434,Female,19,Audio,Baseline Illusion ,0,100,5,0,2.5,0,1,0.5
+434,,,Audio,V/VA Illusion ,50,61,42,28,35,14,16,15
+434,,,Audio,VT/VTA Illusion ,69,57,49,36,42.5,13,44,28.5
+435,Female,20,No Audio,Baseline Illusion ,0,100,0,9,4.5,10,0,5
+435,,,No Audio,V/VA Illusion ,63,90,12,23,17.5,0,0,0
+435,,,No Audio,VT/VTA Illusion ,79,85,13,6,9.5,0,0,0
+436,Male,20,Audio,Baseline Illusion ,0,96,0,0,0,7,0,3.5
+436,,,Audio,V/VA Illusion ,71,81,10,5,7.5,0,0,0
+436,,,Audio,VT/VTA Illusion ,92,91,3,2,2.5,0,0,0
+437,Female,19,No Audio,Baseline Illusion ,0,80,0,0,0,0,0,0
+437,,,No Audio,V/VA Illusion ,32,64,0,0,0,0,13,6.5
+437,,,No Audio,VT/VTA Illusion ,56,72,0,15,7.5,0,10,5
+438,Non binary,19,Audio,Baseline Illusion ,0,92,0,0,0,22,0,11
+438,,,Audio,V/VA Illusion ,59,72,52,30,41,62,22,42
+438,,,Audio,VT/VTA Illusion ,75,16,76,62,69,50,26,38
+439,Female,18,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+439,,,No Audio,V/VA Illusion ,79,54,5,4,4.5,1,1,1
+439,,,No Audio,VT/VTA Illusion ,100,61,0,0,0,0,0,0
+440,Female ,18,No Audio,Baseline Illusion ,1,100,2,1,1.5,3,1,2
+440,,,No Audio,V/VA Illusion ,60,100,51,51,51,50,0,25
+440,,,No Audio,VT/VTA Illusion ,92,90,2,3,2.5,1,1,1
+442,Female,20,Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+442,,,Audio,V/VA Illusion ,55,25,85,89,87,0,0,0
+442,,,Audio,VT/VTA Illusion ,100,80,72,32,52,0,0,0
+443,Female,19,No Audio,Baseline Illusion ,0,100,0,0,0,50,0,25
+443,,,No Audio,V/VA Illusion ,0,0,100,100,100,0,0,0
+443,,,No Audio,VT/VTA Illusion ,100,100,0,0,0,0,0,0
+444,Female,19,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+444,,,No Audio,V/VA Illusion ,65,78,61,15,38,0,0,0
+444,,,No Audio,VT/VTA Illusion ,90,86,14,19,16.5,0,0,0
+445,Male,19,No Audio,Baseline Illusion ,0,50,61,0,30.5,10,0,5
+445,,,No Audio,V/VA Illusion ,0,49,70,0,35,0,0,0
+445,,,No Audio,VT/VTA Illusion ,60,80,0,0,0,0,0,0
+446,Female,18,No Audio,Baseline Illusion ,72,62,14,11,12.5,5,7,6
+446,,,No Audio,V/VA Illusion ,61,49,16,12,14,6,5,5.5
+446,,,No Audio,VT/VTA Illusion ,91,79,24,12,18,8,6,7
+447,Female,20,Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+447,,,Audio,V/VA Illusion ,67,90,12,12,12,0,0,0
+447,,,Audio,VT/VTA Illusion ,100,95,0,0,0,0,0,0
+448,Female,19,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+448,,,No Audio,V/VA Illusion ,32,80,0,0,0,0,0,0
+448,,,No Audio,VT/VTA Illusion ,51,90,0,0,0,0,0,0
+449,Female,20,No Audio,Baseline Illusion ,0,100,0,0,0,0,0,0
+449,,,No Audio,V/VA Illusion ,41,22,100,100,100,0,0,0
+449,,,No Audio,VT/VTA Illusion ,82,29,89,100,94.5,0,0,0
+450,Female,19,No Audio,Baseline Illusion ,12,79,10,11,10.5,11,11,11
+450,,,No Audio,V/VA Illusion ,40,90,19,30,24.5,7,20,13.5
+450,,,No Audio,VT/VTA Illusion ,90,70,19,19,19,11,12,11.5
+451,Female ,21,No Audio,Baseline Illusion ,0,91,2,5,3.5,0,0,0
+451,,,No Audio,V/VA Illusion ,14,61,35,53,44,12,0,6
+451,,,No Audio,VT/VTA Illusion ,73,88,25,13,19,0,0,0
+452,Male ,18,No Audio,Baseline Illusion ,0,72,76,26,51,9,0,4.5
+452,,,No Audio,V/VA Illusion ,14,41,56,48,52,60,8,34
+452,,,No Audio,VT/VTA Illusion ,100,100,0,0,0,0,0,0
+453,Female,20,Audio,Baseline Illusion ,22,86,20,14,17,54,21,37.5
+453,,,Audio,V/VA Illusion ,27,29,57,65,61,47,27,37
+453,,,Audio,VT/VTA Illusion ,79,40,62,33,47.5,25,31,28
+454,Female,20,No Audio,Baseline Illusion ,0,95,20,55,37.5,0,0,0
+454,,,No Audio,V/VA Illusion ,60,18,85,75,80,0,0,0
+454,,,No Audio,VT/VTA Illusion ,95,55,25,50,37.5,0,0,0
