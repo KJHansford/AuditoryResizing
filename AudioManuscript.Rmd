@@ -4491,7 +4491,7 @@ Exploratory correlation analyses were run to assess relationships between subjec
 
 ```{r figure12, fig.cap="Correlations between Illusion Score and Right Dot, Left Dot and Ruler Judgement data respectively. Shading shows confidence intervals and colour shows groups", fig.show='hold', fig.align='center', echo=FALSE}
 
-knitr::include_graphics(c('figures/correlations_OR.pdf'))
+knitr::include_graphics(c('figures/Correlations_OR.pdf'))
 
 ```
 
