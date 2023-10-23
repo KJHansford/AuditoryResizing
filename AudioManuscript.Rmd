@@ -137,7 +137,7 @@ ObjectivePA <- pwr.anova.test(k=2,f=.64,sig.level=.05,power=.8)
 
 ## 2.3.1 Power Analysis and Sample Size {.unnumbered}
 
-A priori power analysis using subjective illusion data and performance task dot touch data from a pilot study (N = 10, https://osf.io/pb3ku ) showed a minimum sample size of `r round(SubjectivePA$n[1])*2` participants is required for hypothesis 1a regarding visuo-auditory / visuotactile-auditory manipulations (Cohen's *d* = `r (SubjectivePA$d[1])`, power = `r (SubjectivePA$power[1])`, $\alpha$ = `r (SubjectivePA$sig.level[1])`, between subjects design), and a sample of `r round(ObjectivePA$n[1])*2` participants is required for hypothesis 2 regarding the dot touch task (*f* = `r (ObjectivePA$f[1])`, power = `r (ObjectivePA$power[1])`, $\alpha$ = `r (ObjectivePA$sig.level[1])`, between subjects design). Due to the inherent ambiguity of sample size estimations from power analysis, and to account for the additional ruler judgment task, the upper sample size of 26 participants will be doubled to a sample size of 52 participants.
+A priori power analysis using subjective illusion data and performance task dot touch data from a pilot study (N = 10, https://osf.io/pb3ku ) showed a minimum sample size of `r round(SubjectivePA$n[1])*2` participants is required for hypothesis 1a regarding visuo-auditory / visuotactile-auditory manipulations (Cohen's *d* = `r (SubjectivePA$d[1])`, power = `r (SubjectivePA$power[1])`, $\alpha$ = `r (SubjectivePA$sig.level[1])`, between subjects design), and a sample of `r round(ObjectivePA$n[1])*2` participants is required for hypothesis 2 regarding the dot touch task (*f* = `r (ObjectivePA$f[1])`, power = `r (ObjectivePA$power[1])`, $\alpha$ = `r (ObjectivePA$sig.level[1])`, between subjects design). Due to the inherent ambiguity of effect size estimations used to determine sample sizes in power analysis, and to account for the additional ruler judgment task, the upper sample size of 26 participants was doubled to a sample size of 52 participants.
 
 ## 2.3.2 Participants {.unnumbered}
 
@@ -3772,14 +3772,7 @@ par(mfrow=c(1,2))
 layout.matrix <- matrix(c(1, 2), nrow = 1, ncol = 2)
 layout(mat = layout.matrix,
        heights = c(2), # Heights of the rows
-       widths = c(1, 3)) # Widths of the columns
-
-#par(mar=c(4,1,1,1))
-plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
-arrows(0.85,0.55,x1=0.85,y1=0.95,length=0.1,angle=30,lwd=3)
-arrows(0.85,0.45,x1=0.85,y1=0.05,length=0.1,angle=30,lwd=3)
-text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
-text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
+       widths = c(3, 1)) # Widths of the columns
 
 
 #Plot Data
@@ -3870,6 +3863,14 @@ nbootstraps <- 10000
 
   #legend(2,20,c('Audio','No Audio'),pch=21:22,pt.bg=c("#00AFBB","#FC4E07"),pt.lwd=2,cex=1.4,pt.cex=2,box.lwd=2)
 
+  #par(mar=c(4,1,1,1))
+  par(mar = c(3, 0, 2.5, 0))
+plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
+arrows(0.05,0.55,x1=0.05, y1=0.95,length=0.1,angle=30,lwd=3)
+arrows(0.05,0.45,x1=0.05,y1=0.05,length=0.1,angle=30,lwd=3)
+text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
+text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
+
 
 dev.off()
 
@@ -3878,14 +3879,14 @@ par(mfrow=c(1,2))
 layout.matrix <- matrix(c(1, 2), nrow = 1, ncol = 2)
 layout(mat = layout.matrix,
        heights = c(1, 1, 1), # Heights of the rows
-       widths = c(1, 3.)) # Widths of the columns
+       widths = c(3, 1)) # Widths of the columns
 
 #par(mar=c(4,1,1,1))
-plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
-arrows(0.85,0.55,x1=0.85,y1=0.95,length=0.1,angle=30,lwd=3)
-arrows(0.85,0.45,x1=0.85,y1=0.05,length=0.1,angle=30,lwd=3)
-text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
-text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
+# plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
+# arrows(0.85,0.55,x1=0.85,y1=0.95,length=0.1,angle=30,lwd=3)
+# arrows(0.85,0.45,x1=0.85,y1=0.05,length=0.1,angle=30,lwd=3)
+# text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
+# text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
 
 
 #OR
@@ -3980,6 +3981,12 @@ nbootstraps <- 10000
 
  # legend(2,20,c('Audio','No Audio'),pch=21:22,pt.bg=c("#00AFBB","#FC4E07"),pt.lwd=2,cex=1.4,pt.cex=2,box.lwd=2)
 
+    par(mar = c(3, 0, 2.5, 0))
+plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
+arrows(0.05,0.55,x1=0.05, y1=0.95,length=0.1,angle=30,lwd=3)
+arrows(0.05,0.45,x1=0.05,y1=0.05,length=0.1,angle=30,lwd=3)
+text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
+text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
 
 dev.off()
 
@@ -4235,7 +4242,7 @@ Hypothesis 1 predicted that adding a non-naturalistic auditory input to augmente
 
 Mean scores across participants were above 50 in all conditions for the second item on the subjective questionnaire, indicating experience of ownership of the hand in all conditions, whilst reporting mean scores for disownership and control statements below 50, indicating no average disownership of the hand and no average violations of the control statements (results can be seen in supplementary materials S2 – S4).
 
-```{r figure2, fig.cap="Subjective Illusory Experience Score for Baseline, V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group.", fig.align='center', echo=FALSE}
+```{r figure2, fig.cap="Normalised Subjective Illusory Experience Score for V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Error bars show the standard error of the mean, which is shown by the circle and square respectively. Y-axis shows subjective illusion scale data after normalisation through subtraction of each participant’s baseline score from their V/VA and VT/VTA scores. Subjective illusion scale ranges from 0 indicating strongly disagreeing with the experience of finger stretching, 50 indicating a neutral opinion, and 100 indicating strongly agreeing with the experience of finger stretching. ", fig.align='center', echo=FALSE}
 
 knitr::include_graphics('figures/Illusion1Raincloud_OR_BR.pdf')
 
@@ -4246,7 +4253,7 @@ Positive control analyses were first run on the performance data to check that w
 We then addressed hypothesis 2, that the addition of auditory input would heighten ability on performance tasks, using a dot touch proprioceptive drift task as an index of body schema for (2a) visuo-tactile and (2b) unimodal-visual manipulations (see Figure 3). Again, a factorial ANOVA with a within-subjects factor of condition and a between-subjects factor of group was used to assess if there was an effect of group (Audio Vs Non-Audio) on dot touch data in the V/VA and VT/VTA conditions. Analysis on right dot touch data showed no significant interaction between condition and group *F*(`r round(anova8_OR$ANOVA$DFn[3], digits = 2)`, `r round(anova8_OR$ANOVA$DFd[3], digits = 2)`) = `r round(anova8_OR$ANOVA$F[3], digits = 2)`, *p* = `r format.pval(anova8_OR$ANOVA$p[3], digits = 1, eps = 0.001, nsmall = 3)` and main effects showed no effect of condition (*F*(`r round(anova8_OR$ANOVA$DFn[2], digits = 2)`, `r round(anova8_OR$ANOVA$DFd[2], digits = 2)`) = `r round(anova8_OR$ANOVA$F[2], digits = 2)`,*p* = `r format.pval(anova8_OR$ANOVA$p[2], digits = 1, eps = 0.001, nsmall = 3)`) or group (*F*(`r round(anova8_OR$ANOVA$DFn[1], digits = 2)`, `r round(anova8_OR$ANOVA$DFd[1], digits = 2)`) = `r round(anova8_OR$ANOVA$F[1], digits = 2)`,*p* = `r format.pval(anova8_OR$ANOVA$p[1], digits = 1, eps = 0.001, nsmall = 3)`). Analysis on left dot touch data showed no significant interaction between condition and group *F*(`r round(anova9_OR$ANOVA$DFn[3], digits = 2)`, `r round(anova9_OR$ANOVA$DFd[3], digits = 2)`) = `r round(anova9_OR$ANOVA$F[3], digits = 2)`, *p* = `r format.pval(anova9_OR$ANOVA$p[3], digits = 1, eps = 0.001, nsmall = 3)` whilst main effects showed no effect of group (*F*(`r round(anova9_OR$ANOVA$DFn[1], digits = 2)`, `r round(anova9_OR$ANOVA$DFd[1], digits = 2)`) = `r round(anova9_OR$ANOVA$F[1], digits = 2)`, *p* = `r format.pval(anova9_OR$ANOVA$p[1], digits = 1, eps = 0.001, nsmall = 3)`) but did show an effect of condition (*F*(`r round(anova9_OR$ANOVA$DFn[2], digits = 2)`, `r round(anova9_OR$ANOVA$DFd[2], digits = 2)`) = `r round(anova9_OR$ANOVA$F[2], digits = 2)`, *p* = `r format.pval(anova9_OR$ANOVA$p[2], digits = 1, eps = 0.001, nsmall = 3)`, CI= [`r round(CI_VVT_OR_9$conf.int[1])`,`r round(CI_VVT_OR_9$conf.int[2])`]), with participants placing their finger significantly lower in the V/VA condition (M =`r round(means9_OR$mean[1], digits = 2)`, SD =`r round(means9_OR$sd[1], digits = 2)`, SE =`r round(means9_OR$se[1], digits = 2)`) compared to the VT/VTA condition (M =`r round(means9_OR$mean[2], digits = 2)`, SD =`r round(means9_OR$sd[2], digits = 2)`, SE =`r round(means9_OR$se[2], digits = 2)`). 
 
 
-```{r figure3, fig.cap="Dot Touch Data in relative centimetres for V/VA and VT/VTA conditions for both left and right hand data. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote the direction of finger length estimation.", fig.show='hold', fig.align='center', echo=FALSE}
+```{r figure3, fig.cap="Dot Touch Data in centimetres for V/VA and VT/VTA conditions for both left and right hand data, relative to baseline judgements. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote the direction of finger length estimation (downward arrow showing overestimation, upward arrow showing underestimation).", fig.show='hold', fig.align='center', echo=FALSE}
 
 knitr::include_graphics(c('figures/normplots_OR.pdf'))
 
@@ -4254,7 +4261,7 @@ knitr::include_graphics(c('figures/normplots_OR.pdf'))
 
 Finally, we assesed hypothesis 3, that the addition of auditory input would heighten ability on a performance task measured using a ruler judgement task that indexes body image for (3a) visuo-tactile and (3b) unimodal-visual manipulations (see Figure 4). Again, a factorial ANOVA with a within-subjects factor of condition and a between-subjects factor of group was used to assess if there was an effect of group (Audio Vs Non-Audio) on ruler judgement data in the V/VA and VT/VTA conditions. Analysis showed no significant interaction between condition and group *F*(`r round(anova10_OR$ANOVA$DFn[3], digits = 2)`, `r round(anova10_OR$ANOVA$DFd[3], digits = 2)`) = `r round(anova10_OR$ANOVA$F[3], digits = 3)`, *p* = `r format.pval(anova10_OR$ANOVA$p[3], digits = 1, eps = 0.001, nsmall = 3)` and simple main effects showed no effect of condition (*p* = `r format.pval(anova10_OR$ANOVA$p[2], digits = 1, eps = 0.001, nsmall = 3)`) or group (*p* = `r format.pval(anova10_OR$ANOVA$p[1], digits = 1, eps = 0.001, nsmall = 3)`).
 
-```{r figure5, fig.cap="Ruler Judgement data in relative centimeters for V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote direction of perceived finger length.", fig.show='hold', fig.align='center', echo=FALSE}
+```{r figure5, fig.cap="Ruler Judgement data in relative centimetres for V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote direction of perceived finger length (downward arrow showing shorter perception, upward arrow showing longer perception).", fig.show='hold', fig.align='center', echo=FALSE}
 
 knitr::include_graphics(c('figures/normrulerplots_OR.pdf'))
 
@@ -4392,25 +4399,6 @@ knitr::include_graphics(c('figures/normplots.pdf'))
 
 ```
 
-A factorial ANOVA with a within-subjects factor of condition and a between-subjects factor of group was used to assess if there was an effect of group (Audio Vs Non-Audio) on ruler judgement data in the V/VA and VT/VTA conditions. Analysis showed no significant interaction between condition and group *F*(`r round(anova10$ANOVA$DFn[3], digits = 2)`, `r round(anova10$ANOVA$DFd[3], digits = 2)`) = `r round(anova10$ANOVA$F[3], digits = 3)`, *p* = `r format.pval(anova10$ANOVA$p[3], digits = 1, eps = 0.001, nsmall = 3)` and simple main effects showed no effect of condition (*p* = `r format.pval(anova10$ANOVA$p[2], digits = 1, eps = 0.001, nsmall = 3)`) or group (*p* = `r format.pval(anova10$ANOVA$p[1], digits = 1, eps = 0.001, nsmall = 3)`). 
-
-```{r figure11, fig.cap="Ruler Judgement data for full sample in relative centimeters for V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote direction of perceived finger length.", fig.show='hold', fig.align='center', echo=FALSE}
-
-knitr::include_graphics(c('figures/normrulerplots.pdf'))
-
-```
-
-\newpage
-
-Exploratory correlation analyses were run to assess relationships between subjective illusion score and performance based measures of resizing illusions and can be seen in Figure 4. Significance was assessed against Bonferroni correction for 4 comparisons within each correlation, at an initial alpha of .05. Spearman rank correlation analyses found no significant relationships between subjective illusion score and performance on the right dot task (VA: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[1]`, *p* = `r format.pval(RightDotCorrelation$p[1], digits = 1, eps = 0.001, nsmall = 3)`; V: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[2]`, *p* = `r format.pval(RightDotCorrelation$p[2], digits = 1, eps = 0.001, nsmall = 3)`; VTA *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[3]`, *p* = `r format.pval(RightDotCorrelation$p[3], digits = 1, eps = 0.001, nsmall = 3)`; VT: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[4]`, *p* = `r format.pval(RightDotCorrelation$p[4], digits = 1, eps = 0.001, nsmall = 3)`), or when comparing subjective illusion data to left dot touch data (VA: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[1]`, *p* = `r format.pval(LeftDotCorrelation$p[1], digits = 1, eps = 0.001, nsmall = 3)`; V: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[2]`, *p* = `r format.pval(LeftDotCorrelation$p[2], digits = 1, eps = 0.001, nsmall = 3)`; VTA *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[3]`, *p* = `r format.pval(LeftDotCorrelation$p[3], digits = 1, eps = 0.001, nsmall = 3)`; VT: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[4]`, *p* = `r format.pval(LeftDotCorrelation$p[4], digits = 1, eps = 0.001, nsmall = 3)`), or comparing subjective data ruler judgement data (VA: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[1]`, *p* = `r format.pval(RulerCorrelation$p[1], digits = 1, eps = 0.001, nsmall = 3)`; V: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[2]`, *p* = `r format.pval(RulerCorrelation$p[2], digits = 1, eps = 0.001, nsmall = 3)`; VTA *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[3]`, *p* = `r format.pval(RulerCorrelation$p[3], digits = 1, eps = 0.001, nsmall = 3)`; VT: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[4]`, *p* = `r format.pval(RulerCorrelation$p[4], digits = 1, eps = 0.001, nsmall = 3)`). 
-
-
-```{r figure12, fig.cap="Correlations between Illusion Score and Right Dot, Left Dot and Ruler Judgement data respectively. Shading shows confidence intervals and colour shows groups", fig.show='hold', fig.align='center', echo=FALSE}
-
-knitr::include_graphics(c('figures/Correlations_OR.pdf'))
-
-```
-
 \newpage
 
 Full Sample Ruler Data
@@ -4507,14 +4495,14 @@ par(mfrow=c(1,2))
 layout.matrix <- matrix(c(1, 2), nrow = 1, ncol = 2)
 layout(mat = layout.matrix,
        heights = c(2), # Heights of the rows
-       widths = c(1, 3)) # Widths of the columns
+       widths = c(3, 1)) # Widths of the columns
 
-#par(mar=c(4,1,1,1))
-plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
-arrows(0.85,0.55,x1=0.85,y1=0.95,length=0.1,angle=30,lwd=3)
-arrows(0.85,0.45,x1=0.85,y1=0.05,length=0.1,angle=30,lwd=3)
-text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
-text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
+# #par(mar=c(4,1,1,1))
+# plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
+# arrows(0.85,0.55,x1=0.85,y1=0.95,length=0.1,angle=30,lwd=3)
+# arrows(0.85,0.45,x1=0.85,y1=0.05,length=0.1,angle=30,lwd=3)
+# text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
+# text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
 
 
 #set score to numeric
@@ -4629,14 +4617,32 @@ nbootstraps <- 10000
 
   #legend(2,20,c('Audio','No Audio'),pch=21:22,pt.bg=c("#00AFBB","#FC4E07"),pt.lwd=2,cex=1.4,pt.cex=2,box.lwd=2)
 
+      par(mar = c(3, 0, 2.5, 0))
+plot(x=NULL,y=NULL,axes=FALSE, ann=FALSE, xlim=c(0,1), ylim=c(0,1)) 
+arrows(0.05,0.55,x1=0.05, y1=0.95,length=0.1,angle=30,lwd=3)
+arrows(0.05,0.45,x1=0.05,y1=0.05,length=0.1,angle=30,lwd=3)
+text(0.3,0.75,'Perceived longer',srt=90, cex=.9)
+text(0.3,0.25,'Perceived shorter',srt=90, cex=.9)
 
 dev.off()
 ```
 
-A factorial ANOVA with a within-subjects factor of condition and a between-subjects factor of group was used to assess if there was an effect of group (Audio Vs Non-Audio) on ruler judgement data without outliers removed in the V/VA and VT/VTA conditions. Analysis showed no significant interaction between condition and group *F*(`r round(anova10_FULL$ANOVA$DFn[3], digits = 2)`, `r round(anova10_FULL$ANOVA$DFd[3], digits = 2)`) = `r round(anova10_FULL$ANOVA$F[3], digits = 3)`, *p* = `r format.pval(anova10_FULL$ANOVA$p[3], digits = 1, eps = 0.001, nsmall = 3)` and simple main effects showed no effect of condition (*p* = `r format.pval(anova10_FULL$ANOVA$p[2], digits = 1, eps = 0.001, nsmall = 3)`) or group (*p* = `r format.pval(anova10_FULL$ANOVA$p[1], digits = 1, eps = 0.001, nsmall = 3)`). 
+A factorial ANOVA with a within-subjects factor of condition and a between-subjects factor of group was used to assess if there was an effect of group (Audio Vs Non-Audio) on ruler judgement data in the V/VA and VT/VTA conditions. Analysis showed no significant interaction between condition and group *F*(`r round(anova10_FULL$ANOVA$DFn[3], digits = 2)`, `r round(anova10_FULL$ANOVA$DFd[3], digits = 2)`) = `r round(anova10_FULL$ANOVA$F[3], digits = 3)`, *p* = `r format.pval(anova10_FULL$ANOVA$p[3], digits = 1, eps = 0.001, nsmall = 3)` and simple main effects showed no effect of condition (*p* = `r format.pval(anova10_FULL$ANOVA$p[2], digits = 1, eps = 0.001, nsmall = 3)`) or group (*p* = `r format.pval(anova10_FULL$ANOVA$p[1], digits = 1, eps = 0.001, nsmall = 3)`). 
 
-```{r figure13, fig.cap="Ruler Judgement data for full sample with no outliers removed in relative centimeters for V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote direction of perceived finger length.", fig.show='hold', fig.align='center', echo=FALSE}
+```{r figure13, fig.cap="Ruler Judgement data for full sample in relative centimeters for V/VA and VT/VTA conditions. Group is indicated by colour, with red showing the no audio group and blue showing the audio group. Arrows denote direction of perceived finger length.", fig.show='hold', fig.align='center', echo=FALSE}
 
 knitr::include_graphics(c('figures/normrulerplots_FULL.pdf'))
 
 ```
+
+\newpage
+
+Exploratory correlation analyses were run to assess relationships between subjective illusion score and performance based measures of resizing illusions and can be seen in Figure 4. Significance was assessed against Bonferroni correction for 4 comparisons within each correlation, at an initial alpha of .05. Spearman rank correlation analyses found no significant relationships between subjective illusion score and performance on the right dot task (VA: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[1]`, *p* = `r format.pval(RightDotCorrelation$p[1], digits = 1, eps = 0.001, nsmall = 3)`; V: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[2]`, *p* = `r format.pval(RightDotCorrelation$p[2], digits = 1, eps = 0.001, nsmall = 3)`; VTA *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[3]`, *p* = `r format.pval(RightDotCorrelation$p[3], digits = 1, eps = 0.001, nsmall = 3)`; VT: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RightDotCorrelation$cor[4]`, *p* = `r format.pval(RightDotCorrelation$p[4], digits = 1, eps = 0.001, nsmall = 3)`), or when comparing subjective illusion data to left dot touch data (VA: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[1]`, *p* = `r format.pval(LeftDotCorrelation$p[1], digits = 1, eps = 0.001, nsmall = 3)`; V: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[2]`, *p* = `r format.pval(LeftDotCorrelation$p[2], digits = 1, eps = 0.001, nsmall = 3)`; VTA *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[3]`, *p* = `r format.pval(LeftDotCorrelation$p[3], digits = 1, eps = 0.001, nsmall = 3)`; VT: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r LeftDotCorrelation$cor[4]`, *p* = `r format.pval(LeftDotCorrelation$p[4], digits = 1, eps = 0.001, nsmall = 3)`), or comparing subjective data ruler judgement data (VA: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[1]`, *p* = `r format.pval(RulerCorrelation$p[1], digits = 1, eps = 0.001, nsmall = 3)`; V: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[2]`, *p* = `r format.pval(RulerCorrelation$p[2], digits = 1, eps = 0.001, nsmall = 3)`; VTA *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[3]`, *p* = `r format.pval(RulerCorrelation$p[3], digits = 1, eps = 0.001, nsmall = 3)`; VT: *r*(`r round((length(correlationdata$PID)/2)-2)`) = `r RulerCorrelation$cor[4]`, *p* = `r format.pval(RulerCorrelation$p[4], digits = 1, eps = 0.001, nsmall = 3)`). 
+
+
+```{r figure12, fig.cap="Correlations between Illusion Score and Right Dot, Left Dot and Ruler Judgement data respectively. Shading shows confidence intervals and colour shows groups", fig.show='hold', fig.align='center', echo=FALSE}
+
+knitr::include_graphics(c('figures/Correlations_OR.pdf'))
+
+```
+
