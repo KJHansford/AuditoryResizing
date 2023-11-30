@@ -1,6 +1,6 @@
 These materials are a computationally reproducible version of the paper:
 
-Hansford, K.J., Baker, D.H., McKenzie, K.J. & Preston, C.E.J. (2023). Multisensory Integration and Proprioceptive Plasticity During Resizing Illusions
+Hansford, K.J., Baker, D.H., McKenzie, K.J. & Preston, C.E.J. (2024). Multisensory Processing and Proprioceptive Plasticity During Resizing Illusions, *Experimental Brain Research*, in press.
 
 The file AudioManuscript.Rmd is an R markdown file that will perform all analyses and figure creation, and produce a pdf version of the manuscript.
 
